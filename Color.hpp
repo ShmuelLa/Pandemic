@@ -1,0 +1,5 @@
+namespace pandemic {
+
+    class Color {
+    };
+}
