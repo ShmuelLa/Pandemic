@@ -1,5 +1,7 @@
+#include "Player.hpp"
+
 namespace pandemic {
 
-    class OperationsExpert {
+    class OperationsExpert : public Player {
     };
 }
