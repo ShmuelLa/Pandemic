@@ -1,8 +1,61 @@
+#pragma once
+
 namespace pandemic {
 
-    class City {
-        public:
-            static string HoChiMinhCity = "Red";
+    enum City {
+        Algiers,
+        Atlanta,
+        Baghdad,
+        Bangkok,
+        Beijing,
+        Bogota, 
+        BuenosAires, 
+        Cairo,
+        Chennai,
+        Chicago,
+        Delhi,
+        Essen,
+        HoChiMinhCity,
+        HongKong,
+        Istanbul,
+        Jakarta,
+        Johannesburg,
+        Karachi,
+        Khartoum,
+        Kinshasa,
+        Kolkata,
+        Lagos,
+        Lima,
+        London,
+        LosAngeles,
+        Madrid,
+        Manila,
+        MexicoCity,
+        Miami,
+        Milan,
+        Montreal,
+        Moscow,
+        Mumbai,
+        NewYork,
+        Osaka,
+        Paris,
+        Riyadh,
+        SanFrancisco,
+        Santiago,
+        SaoPaulo,
+        Seoul,
+        Shanghai,
+        StPetersburg,
+        Sydney,
+        Taipei,
+        Tehran,
+        Tokyo,
+        Washington,
+    };
+}
+
+/**
+ *             static string HoChiMinhCity = "Red";
             static string Chicago = "Blue";
             static string Kinshasa = "Yellow";
             static string MexicoCity = "Yellow";
@@ -50,5 +103,5 @@ namespace pandemic {
             static string Tehran = "Black";
             static string Tokyo = "Red";
             static string Washington = "Blue";
-    };
-}
+ * 
+ */
