@@ -12,7 +12,7 @@ namespace pandemic {
         public:
             Board();
             int& operator[] (City city);
-            string is_clean();
+            bool is_clean();
             friend ostream& operator<< (ostream& stream, const Board& board);
             void remove_cures();
     };

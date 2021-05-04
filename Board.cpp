@@ -12,8 +12,8 @@ namespace pandemic {
         return stream;
     }
 
-    string Board::is_clean() {
-        return "0";
+    bool Board::is_clean() {
+        return true;
     }
 
     void Board::remove_cures() {
