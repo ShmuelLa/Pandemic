@@ -20,6 +20,8 @@ TEST_CASE("Board") {
     CHECK(board.is_clean());
 	board[City::Tehran] = 3;
     CHECK_FALSE(board.is_clean());
+    CHECK(board[City::Tehran] == 3);
+    CHECK_FALSE(board[City::Tehran] == 4);
 }
 
 TEST_CASE("Player") {
@@ -33,13 +35,30 @@ TEST_CASE("Player") {
     Scientist sci {board, City::Tehran, 5};
     FieldDoctor field {board, City::Tehran};
     CHECK_EQ(ope.role(), "OperationsExpert");
+    CHECK_FALSE(ope.role() == "FieldDoctor");
     CHECK_EQ(field.role(), "FieldDoctor");
     CHECK_EQ(sci.role(), "Scientist");
+    CHECK_FALSE(sci.role() == "FieldDoctor");
     CHECK_EQ(red.role(), "Researcher");
+    CHECK_FALSE(red.role() == "FieldDoctor");
     CHECK_EQ(gene.role(), "GeneSplicer");
+    CHECK_FALSE(gene.role() == "FieldDoctor");
     CHECK_EQ(dis.role(), "Dispatcher");
+    CHECK_FALSE(dis.role() == "FieldDoctor");
     CHECK_EQ(med.role(), "Medic");
     CHECK_EQ(viro.role(), "Virologist");
     CHECK_NOTHROW(ope.take_card(City::Tehran));
     CHECK_NOTHROW(ope.take_card(City::Tehran).take_card(City::Tehran).take_card(City::Tehran).take_card(City::Tehran));
+}
+
+TEST_CASE("Player") {
+    Board board;
+	board[City::Tehran] = 3;
+    Scientist sci {board, City::Tehran, 3};
+    CHECK_THROWS(sci.discover_cure(Color::Black));
+    sci.take_card(City::Tehran).take_card(City::Tehran).take_card(City::Tehran);
+    CHECK_NOTHROW(sci.discover_cure(Color::Black));
+    CHECK_THROWS(sci.discover_cure(Color::Red));
+    CHECK_THROWS(sci.discover_cure(Color::Yellow));
+    CHECK_THROWS(sci.discover_cure(Color::Blue));
 }
