@@ -1,3 +1,14 @@
+/**
+ * @file Test.cpp
+ * @author Shmuel.Lavian
+ * @brief Pandemic assignment first part testings
+ * @version 0.1
+ * @date 2021-05-04
+ * 
+ * @copyright Copyright (c) 2021
+ * 
+ */
+
 #include "doctest.h"
 #include "Board.hpp"
 #include "City.hpp"
