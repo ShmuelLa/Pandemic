@@ -54,8 +54,9 @@ namespace pandemic {
     };
 }
 
+
 /**
- *             static string HoChiMinhCity = "Red";
+ *          static string HoChiMinhCity = "Red";
             static string Chicago = "Blue";
             static string Kinshasa = "Yellow";
             static string MexicoCity = "Yellow";
@@ -102,6 +103,6 @@ namespace pandemic {
             static string Paris = "Blue";
             static string Tehran = "Black";
             static string Tokyo = "Red";
-            static string Washington = "Blue";
+            string Washington = "Blue";
  * 
  */
