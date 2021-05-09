@@ -1,13 +1,17 @@
 #pragma once
 #include <map>
+#include <set>
 #include "City.hpp"
+#include "Color.hpp"
 using namespace std;
 
 namespace pandemic {
 
     class Board {
         private:
-            map <City, int> _disease_map;
+            typedef pair <Color, int> city_stats;
+            static map <City, city_stats> _disease_map;
+            static map <City, set<City>> _connection_map;
 
         public:
             Board();
