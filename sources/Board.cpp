@@ -41,7 +41,7 @@ namespace pandemic {
         _disease_map[MexicoCity]=make_pair(Yellow, 0);
         _connection_map[MexicoCity]={LosAngeles, Chicago, Miami, Lima, Bogota};
         _disease_map[Manila]=make_pair(Red, 0);
-        _connection_map[Manila]={Taipei, SanFrancisco, HoChiMinhCity, Sydney};
+        _connection_map[Manila]={Taipei, SanFrancisco, HoChiMinhCity, Sydney, HongKong};
         _disease_map[Madrid]=make_pair(Blue, 0);
         _connection_map[Madrid]={London, NewYork, Paris, SaoPaulo, Algiers};
         _disease_map[LosAngeles]=make_pair(Yellow, 0);
