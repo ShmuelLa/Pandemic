@@ -2,6 +2,6 @@
 
 namespace pandemic {
     
-    Scientist::Scientist(Board board, City city, unsigned int num) {
+    Scientist::Scientist(Board board, City city, int num) {
     }
 }

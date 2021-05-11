@@ -11,6 +11,10 @@ namespace pandemic {
     }
 
     Player& Player::drive(City city) {
+        if (_player_board._connection_map[_current_city].count(city) < 1) {
+            throw("Cities are not connected!");
+        }
+        _current_city = city;
         return *this;
     }
 

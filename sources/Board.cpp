@@ -1,6 +1,7 @@
 #include "Board.hpp"
 
 namespace pandemic {
+
     Board::Board() {
         _disease_map[Algiers]=make_pair(Black, 0);
         _connection_map[Algiers]={Madrid, Paris, Istanbul, Cairo};
@@ -105,10 +106,16 @@ namespace pandemic {
     }
 
     ostream& operator<< (ostream& stream, const Board& Board) {
+        stream << "output test";
         return stream;
     }
 
     bool Board::is_clean() {
+        for (auto const &city : _disease_map) {
+            if (city.second.second > 0) {
+                return false;
+            }
+        }
         return true;
     }
 

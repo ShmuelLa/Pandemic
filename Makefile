@@ -52,11 +52,11 @@ tidy:
 valgrind: test1 
 	valgrind --tool=memcheck $(VALGRIND_FLAGS) ./test1 2>&1 | { egrep "lost| at " || true; }
 
+clean:
+	rm -f $(OBJECTS) *.o test* demo*
+	rm -f StudentTest*.cpp
+
 git:
 	git add -A
 	git commit -m "$m"
 	git push
-
-clean:
-	rm -f $(OBJECTS) *.o test* demo*
-	rm -f StudentTest*.cpp

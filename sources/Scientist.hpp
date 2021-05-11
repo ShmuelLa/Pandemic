@@ -6,6 +6,6 @@ namespace pandemic {
 
     class Scientist : public Player {
         public:
-            Scientist(Board board, City city, unsigned int num);
+            Scientist(Board board, City city, int num);
     };
 }
