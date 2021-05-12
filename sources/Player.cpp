@@ -19,11 +19,21 @@ namespace pandemic {
     }
 
     Player& Player::fly_direct(City city) {
-        return *this;
+        if (_player_board._connection_map[_current_city].count(city) >= 1 && _player_cards[city] > 0) {
+            _player_cards[city]--;
+            _current_city = city;
+            return *this;
+        }
+        throw("There is no connected city with availabe cards");      
     }
 
     Player& Player::fly_charter(City city) {
-        return *this;
+        if (_player_board._connection_map[_current_city].count(city) >= 1 && _player_cards[_current_city] > 0) {
+            _player_cards[_current_city]--;
+            _current_city = city;
+            return *this;
+        }
+        throw("There is no connected city with availabe cards");  
     }
 
     Player& Player::fly_shuttle(City city) {
