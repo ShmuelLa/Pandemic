@@ -102,6 +102,9 @@ namespace pandemic {
         for (auto &station : _research_stations) {
             station.second = false;
         }
+        for (auto &cure : _cures_discovered) {
+            cure.second = false;
+        }
     }
 
     int& Board::operator[] (City city) {
@@ -123,6 +126,9 @@ namespace pandemic {
     }
 
     void Board::remove_cures() {
+        for (auto &cure : _cures_discovered) {
+            cure.second = false;
+        }
     }
 }
 

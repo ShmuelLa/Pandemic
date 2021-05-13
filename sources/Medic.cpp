@@ -9,7 +9,7 @@ namespace pandemic {
             throw("No disease cubes in current city");
         }
         Color _currect_city_color = _player_board._disease_map[_current_city].first;
-        if (_cures_discovered[_currect_city_color]) {
+        if (_player_board._cures_discovered[_currect_city_color]) {
             _player_board[_current_city] = 0;
             return *this;
         }
@@ -24,7 +24,7 @@ namespace pandemic {
         }
         _current_city = city;
         Color _currect_city_color = _player_board._disease_map[_current_city].first;
-        if (_cures_discovered[_currect_city_color] && _player_board._disease_map[_current_city].second > 0) {
+        if (_player_board._cures_discovered[_currect_city_color] && _player_board._disease_map[_current_city].second > 0) {
             _player_board[_current_city] = 0;
         }
         return *this;
@@ -35,11 +35,11 @@ namespace pandemic {
         if (_player_city_cards[city] > 0) {
             _player_city_cards[city]--;
             _current_city = city;
-            if (!_cures_discovered[_currect_city_color]) {
+            if (!_player_board._cures_discovered[_currect_city_color]) {
                 return *this;
             }
         }
-        if (_cures_discovered[_currect_city_color] && _player_board._disease_map[_current_city].second > 0) {
+        if (_player_board._cures_discovered[_currect_city_color] && _player_board._disease_map[_current_city].second > 0) {
             _player_board[_current_city] = 0;
             return *this;
         }
@@ -53,7 +53,7 @@ namespace pandemic {
             return *this;
         }
         Color _currect_city_color = _player_board._disease_map[_current_city].first;
-        if (_cures_discovered[_currect_city_color] && _player_board._disease_map[_current_city].second > 0) {
+        if (_player_board._cures_discovered[_currect_city_color] && _player_board._disease_map[_current_city].second > 0) {
             _player_board[_current_city] = 0;
         }
         throw("Medic - There is no connected city with availabe cards");  
@@ -65,7 +65,7 @@ namespace pandemic {
             return *this;
         }
         Color _currect_city_color = _player_board._disease_map[_current_city].first;
-        if (_cures_discovered[_currect_city_color] && _player_board._disease_map[_current_city].second > 0) {
+        if (_player_board._cures_discovered[_currect_city_color] && _player_board._disease_map[_current_city].second > 0) {
             _player_board[_current_city] = 0;
         }
         throw("Medic - Current or targeted city has no research stations");

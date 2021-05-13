@@ -17,6 +17,7 @@ namespace pandemic {
             map <City, city_stats> _disease_map;
             map <City, set<City>> _connection_map;
             map <City, bool> _research_stations;
+            map <Color, bool> _cures_discovered;
             int& operator[] (City city);
             bool is_clean();
             friend ostream& operator<< (ostream& stream, const Board& board);
