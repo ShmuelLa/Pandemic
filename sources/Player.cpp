@@ -61,7 +61,7 @@ namespace pandemic {
             _current_city = city;
             return *this;
         }
-        throw("There is no connected city with availabe cards");  
+        throw("Player - There is no connected city with availabe cards");  
     }
 
     Player& Player::fly_shuttle(City city) {
@@ -69,12 +69,12 @@ namespace pandemic {
             _current_city = city;
             return *this;
         }
-        throw("Current or targeted city has no research stations");
+        throw("Player - Current or targeted city has no research stations");
     }
 
     Player& Player::treat(City city) {
         if (_player_board._disease_map[_current_city].second == 0) {
-            throw("No disease cubes in current city");
+            throw("Player - No disease cubes in current city");
         }
         Color _currect_city_color = _player_board._disease_map[_current_city].first;
         if (_cures_discovered[_currect_city_color]) {
@@ -86,6 +86,9 @@ namespace pandemic {
     }
 
     Player& Player::discover_cure(Color color) {
+        if (!_research_stations[_current_city]) {
+            throw("Player - Don't have research station in current city");
+        }
         const int _cards_needed = 5;
         Color _currect_city_color = _player_board._disease_map[_current_city].first;
         if (_cures_discovered[_currect_city_color] 

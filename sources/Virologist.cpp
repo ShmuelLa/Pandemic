@@ -26,7 +26,7 @@ namespace pandemic {
             _player_board[city] = 0;
             return *this;
         }
-        if (_player_city_cards[city] = 0) {
+        if (_player_city_cards[city] == 0) {
             throw("Virologist - don't have needed city card");
         }
         _player_board[city]--;
