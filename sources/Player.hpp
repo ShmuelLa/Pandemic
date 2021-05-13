@@ -14,7 +14,6 @@ namespace pandemic {
             City _current_city;
             Board& _player_board;
             map <City, int> _player_city_cards;
-            map <Color, int> _player_color_cards;
 
         public:
             Player(Board& brd, City city);

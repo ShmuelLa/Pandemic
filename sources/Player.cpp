@@ -7,9 +7,6 @@ namespace pandemic {
         for (auto &card : _player_city_cards) {
             card.second = 0;
         }
-        for (auto &color : _player_color_cards) {
-            color.second = 0;
-        }
     }
     
     Player& Player::take_card(City city) {
@@ -89,13 +86,25 @@ namespace pandemic {
         if (_player_board._cures_discovered[color]) {
             return *this;
         }
-        if (_player_color_cards[color] >= _cards_needed
-            && _player_board._research_stations[_current_city]) {
-            _player_color_cards[color] -= _cards_needed;
-            _player_board._cures_discovered[color] = true;
-            return *this;
+        int card_count = 0;
+        for (auto &cards : _player_city_cards) {
+            if (cards.second > 0 && _player_board._disease_map[cards.first].first == color) {
+                card_count++;
+            }
         }
-        throw("Player - Can't discover cure, insufficient color cards");
+        if (card_count < _cards_needed) {
+            throw("Player - Can't discover cure, insufficient color cards");
+        }
+        card_count = 0;
+        while (card_count <= _cards_needed) {
+            for (auto &cards : _player_city_cards) {
+                if (_player_board._disease_map[cards.first].first == color) {
+                    card_count++;
+                    cards.second--;
+                }
+            }
+        }
+        return *this;
     }
 
     string Player::role() {
@@ -105,9 +114,6 @@ namespace pandemic {
     Player& Player::remove_cards() {
         for (auto &card : _player_city_cards) {
             card.second = 0;
-        }
-        for (auto &color : _player_color_cards) {
-            color.second = 0;
         }
         return *this;
     }

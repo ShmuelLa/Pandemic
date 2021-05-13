@@ -6,20 +6,31 @@ namespace pandemic {
     }
 
     Player& Scientist::discover_cure(Color color) {
-        Color _currect_city_color = _player_board._disease_map[_current_city].first;
-        if (_player_board._cures_discovered[_currect_city_color] 
-            && _player_color_cards[_currect_city_color] >= _cards_needed_for_cure
-            && _player_board._research_stations[_current_city]) {
+        if (!_player_board._research_stations[_current_city]) {
+            throw("Scientist - Don't have research station in current city");
+        }
+        if (_player_board._cures_discovered[color]) {
             return *this;
         }
-        if (_player_color_cards[_currect_city_color] >= _cards_needed_for_cure
-            && _player_board._research_stations[_current_city]) {
-            _player_color_cards[_currect_city_color] -= _cards_needed_for_cure;
-            _player_board._cures_discovered[_currect_city_color] = true;
-            return *this;
+        int card_count = 0;
+        for (auto &cards : _player_city_cards) {
+            if (cards.second > 0 && _player_board._disease_map[cards.first].first == color) {
+                card_count++;
+            }
         }
-        throw("Scientist - Can't discover cure, insufficient color cards");
-
+        if (card_count < _cards_needed_for_cure) {
+            throw("Scientist - Can't discover cure, insufficient color cards");
+        }
+        card_count = 0;
+        while (card_count < _cards_needed_for_cure) {
+            for (auto &cards : _player_city_cards) {
+                if (_player_board._disease_map[cards.first].first == color) {
+                    card_count++;
+                    cards.second--;
+                }
+            }
+        }
+        return *this;
     }
 
     string Scientist::role() {
