@@ -56,7 +56,7 @@ namespace pandemic {
         throw("Medic - There is no connected city with availabe cards");  
     }
 
-    Player& Player::fly_shuttle(City city) {
+    Player& Medic::fly_shuttle(City city) {
         if (_research_stations[_current_city] && _research_stations[city]) {
             _current_city = city;
             return *this;
