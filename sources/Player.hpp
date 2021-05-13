@@ -14,7 +14,10 @@ namespace pandemic {
             set <City> _cities;
             City _current_city;
             Board _player_board;
-            map <City, int> _player_cards;
+            map <City, int> _player_city_cards;
+            map <Color, int> _player_color_cards;
+            map <City, bool> _research_stations;
+            map <Color, bool> _cures_discovered;
 
         public:
             Player& take_card(City city);

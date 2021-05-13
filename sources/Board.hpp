@@ -11,10 +11,10 @@ namespace pandemic {
     class Board {
         private:
             typedef pair <Color, int> city_stats;
-            map <City, city_stats> _disease_map;
 
         public:
             Board();
+            map <City, city_stats> _disease_map;
             map <City, set<City>> _connection_map;
             int& operator[] (City city);
             bool is_clean();
