@@ -99,6 +99,9 @@ namespace pandemic {
         _connection_map[Tokyo]={Seoul, Shanghai, Osaka, SanFrancisco};
         _disease_map[Washington]=make_pair(Blue, 0);
         _connection_map[Washington]={Atlanta, NewYork, Montreal, Miami};
+        for (auto &station : _research_stations) {
+            station.second = false;
+        }
     }
 
     int& Board::operator[] (City city) {

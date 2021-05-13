@@ -31,14 +31,17 @@ namespace pandemic {
     }
 
     Player& Medic::fly_direct(City city) {
-        if (_player_board._connection_map[_current_city].count(city) >= 1 && _player_city_cards[city] > 0) {
+        Color _currect_city_color = _player_board._disease_map[_current_city].first;
+        if (_player_city_cards[city] > 0) {
             _player_city_cards[city]--;
             _current_city = city;
-            return *this;
+            if (!_cures_discovered[_currect_city_color]) {
+                return *this;
+            }
         }
-        Color _currect_city_color = _player_board._disease_map[_current_city].first;
         if (_cures_discovered[_currect_city_color] && _player_board._disease_map[_current_city].second > 0) {
             _player_board[_current_city] = 0;
+            return *this;
         }
         throw("Medic - There is no connected city with availabe cards");      
     }
@@ -57,7 +60,7 @@ namespace pandemic {
     }
 
     Player& Medic::fly_shuttle(City city) {
-        if (_research_stations[_current_city] && _research_stations[city]) {
+        if (_player_board._research_stations[_current_city] && _player_board._research_stations[city]) {
             _current_city = city;
             return *this;
         }

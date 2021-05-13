@@ -6,10 +6,10 @@ namespace pandemic {
     }
 
     Player& OperationsExpert::build() {
-        if (_research_stations[_current_city]) {
+        if (_player_board._research_stations[_current_city]) {
             return *this;
         }
-        _research_stations[_current_city] = true;
+        _player_board._research_stations[_current_city] = true;
         return *this;
     }
 
