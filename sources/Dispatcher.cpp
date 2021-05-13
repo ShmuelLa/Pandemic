@@ -15,7 +15,7 @@ namespace pandemic {
             _current_city = city;
             return *this;
         }
-        throw("There is no connected city with availabe cards");   
+        throw("Dispatcher - There is no connected city with availabe cards");   
     }
 
     string Dispatcher::role() {

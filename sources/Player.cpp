@@ -88,18 +88,31 @@ namespace pandemic {
     Player& Player::discover_cure(Color color) {
         const int _cards_needed = 5;
         Color _currect_city_color = _player_board._disease_map[_current_city].first;
-        if (_cures_discovered[_currect_city_color] && _player_color_cards[_currect_city_color] > 4) {
+        if (_cures_discovered[_currect_city_color] 
+            && _player_color_cards[_currect_city_color] >= 5
+            && _research_stations[_current_city]) {
             return *this;
         }
-        if (_player_color_cards[_currect_city_color] > 4) {
+        if (_player_color_cards[_currect_city_color] >= 5
+            && _research_stations[_current_city]) {
             _player_color_cards[_currect_city_color] -= _cards_needed;
             _cures_discovered[_currect_city_color] = true;
             return *this;
         }
-        throw("Can't discover cure, insufficient color cards");
+        throw("Player - Can't discover cure, insufficient color cards");
     }
 
     string Player::role() {
         return "Player";
+    }
+
+    Player& Player::remove_cards() {
+        for (auto &card : _player_city_cards) {
+            card.second = 0;
+        }
+        for (auto &color : _player_color_cards) {
+            color.second = 0;
+        }
+        return *this;
     }
 }
