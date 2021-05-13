@@ -7,5 +7,6 @@ namespace pandemic {
     class FieldDoctor : public Player {
         public:
             FieldDoctor(Board& board, City city);
+            virtual string role() override;
     };
 }

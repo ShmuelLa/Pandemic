@@ -9,7 +9,7 @@ using namespace std;
 namespace pandemic {
 
     class Board {
-        private:
+        protected:
             typedef pair <Color, int> city_stats;
 
         public:

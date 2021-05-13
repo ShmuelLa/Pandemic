@@ -7,5 +7,6 @@ namespace pandemic {
     class GeneSplicer : public Player {
         public:
             GeneSplicer(Board& board, City city);
+            virtual string role() override;
     };
 }

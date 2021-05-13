@@ -10,7 +10,7 @@ using std::set;
 namespace pandemic {
 
     class Player {
-        private:
+        protected:
             City _current_city;
             Board _player_board;
             map <City, int> _player_city_cards;
@@ -21,13 +21,13 @@ namespace pandemic {
         public:
             Player(Board& brd, City city);
             Player& take_card(City city);
-            Player& build();
+            virtual Player& build();
             Player& drive(City city);
-            Player& treat(City city);
-            Player& fly_direct(City city);
+            virtual Player& treat(City city);
+            virtual Player& fly_direct(City city);
             Player& fly_charter(City city);
             Player& fly_shuttle(City city);
-            Player& discover_cure(Color color);
-            string role();
+            virtual Player& discover_cure(Color color);
+            virtual string role();
     };
 }

@@ -20,7 +20,9 @@ namespace pandemic {
     }
     
     Player& Player::take_card(City city) {
-        _player_city_cards[city]++;
+        if (_player_city_cards[city] == 0) {
+            _player_city_cards[city]++;
+        }
         return *this;
     }
 
@@ -84,12 +86,13 @@ namespace pandemic {
     }
 
     Player& Player::discover_cure(Color color) {
+        const int _cards_needed = 5;
         Color _currect_city_color = _player_board._disease_map[_current_city].first;
         if (_cures_discovered[_currect_city_color] && _player_color_cards[_currect_city_color] > 4) {
             return *this;
         }
         if (_player_color_cards[_currect_city_color] > 4) {
-            _player_color_cards[_currect_city_color] -= 5;
+            _player_color_cards[_currect_city_color] -= _cards_needed;
             _cures_discovered[_currect_city_color] = true;
             return *this;
         }
