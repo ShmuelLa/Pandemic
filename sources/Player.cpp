@@ -2,8 +2,7 @@
 
 namespace pandemic {
 
-    Player::Player(Board& brd, City city) {
-        _player_board = brd;
+    Player::Player(Board& brd, City city) : _player_board(brd) {
         _current_city = city;
         for (auto &card : _player_city_cards) {
             card.second = 0;
@@ -53,7 +52,7 @@ namespace pandemic {
     }
 
     Player& Player::fly_charter(City city) {
-        if (_player_board._connection_map[_current_city].count(city) >= 1 && _player_city_cards[_current_city] > 0) {
+        if (_player_city_cards[_current_city] > 0) {
             _player_city_cards[_current_city]--;
             _current_city = city;
             return *this;

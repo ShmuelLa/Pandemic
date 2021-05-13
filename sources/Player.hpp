@@ -12,7 +12,7 @@ namespace pandemic {
     class Player {
         protected:
             City _current_city;
-            Board _player_board;
+            Board& _player_board;
             map <City, int> _player_city_cards;
             map <Color, int> _player_color_cards;
             map <Color, bool> _cures_discovered;
