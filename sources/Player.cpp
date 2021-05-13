@@ -1,8 +1,26 @@
 #include "Player.hpp"
 
 namespace pandemic {
+
+    Player::Player(Board& brd, City city) {
+        _player_board = brd;
+        _current_city = city;
+        for (auto &card : _player_city_cards) {
+            card.second = 0;
+        }
+        for (auto &color : _player_color_cards) {
+            color.second = 0;
+        }
+        for (auto &station : _research_stations) {
+            station.second = false;
+        }
+        for (auto &cure : _cures_discovered) {
+            cure.second = false;
+        }
+    }
     
     Player& Player::take_card(City city) {
+        _player_city_cards[city]++;
         return *this;
     }
 

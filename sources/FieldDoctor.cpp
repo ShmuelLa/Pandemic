@@ -1,7 +1,6 @@
 #include "FieldDoctor.hpp"
 
 namespace pandemic {
-    FieldDoctor::FieldDoctor(Board board, City city) {
-        
+    FieldDoctor::FieldDoctor(Board& board, City city) : Player(board, city) {
     }
 }

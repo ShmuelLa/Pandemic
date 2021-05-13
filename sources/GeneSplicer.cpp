@@ -2,7 +2,6 @@
 
 namespace pandemic {
 
-    GeneSplicer::GeneSplicer(Board board, City city) {
-
+    GeneSplicer::GeneSplicer(Board& board, City city) : Player(board, city) {
     }
 }

@@ -11,7 +11,6 @@ namespace pandemic {
 
     class Player {
         private:
-            set <City> _cities;
             City _current_city;
             Board _player_board;
             map <City, int> _player_city_cards;
@@ -20,6 +19,7 @@ namespace pandemic {
             map <Color, bool> _cures_discovered;
 
         public:
+            Player(Board& brd, City city);
             Player& take_card(City city);
             Player& build();
             Player& drive(City city);
