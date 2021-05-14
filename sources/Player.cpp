@@ -17,7 +17,7 @@ namespace pandemic {
     }
 
     Player& Player::build() {
-        if (_player_city_cards[_current_city] > 0 && _player_board._research_stations[_current_city]) {
+        if (_player_board._research_stations[_current_city]) {
             return *this;
         }
         if (_player_city_cards[_current_city] > 0) {
@@ -49,6 +49,9 @@ namespace pandemic {
     }
 
     Player& Player::fly_charter(City city) {
+        if (_current_city == city) {
+            throw("Player - Can't Fly charter to current city");
+        }
         if (_player_city_cards[_current_city] > 0) {
             _player_city_cards[_current_city]--;
             _current_city = city;
@@ -99,7 +102,7 @@ namespace pandemic {
             throw("Player - Can't discover cure, insufficient color cards");
         }
         card_count = 0;
-        while (card_count <= _cards_needed) {
+        while (card_count < _cards_needed) {
             for (auto &cards : _player_city_cards) {
                 if (_player_board._disease_map[cards.first].first == color) {
                     card_count++;

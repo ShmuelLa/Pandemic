@@ -10,6 +10,7 @@ using std::set;
 namespace pandemic {
 
     class Player {
+        
         protected:
             City _current_city;
             Board& _player_board;

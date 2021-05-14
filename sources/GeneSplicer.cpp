@@ -23,7 +23,7 @@ namespace pandemic {
             throw("GeneSplicer - Can't discover cure, insufficient color cards");
         }
         card_count = 0;
-        while (card_count <= _cards_needed) {
+        while (card_count < _cards_needed) {
             for (auto &cards : _player_city_cards) {
                 if (cards.second > 0) {
                     card_count++;

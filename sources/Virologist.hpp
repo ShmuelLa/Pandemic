@@ -5,6 +5,7 @@
 namespace pandemic {
 
     class Virologist : public Player {
+        
         public:
             Virologist(Board& board, City city);
             virtual Player& treat(City city) override;

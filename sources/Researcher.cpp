@@ -1,6 +1,7 @@
 #include "Researcher.hpp"
 
 namespace pandemic {
+    
     Researcher::Researcher(Board& board, City city) : Player(board, city) {
     }
 
@@ -19,7 +20,7 @@ namespace pandemic {
             throw("Researcher - Can't discover cure, insufficient color cards");
         }
         card_count = 0;
-        while (card_count <= _cards_needed) {
+        while (card_count < _cards_needed) {
             for (auto &cards : _player_city_cards) {
                 if (_player_board._disease_map[cards.first].first == color) {
                     card_count++;

@@ -24,3 +24,5 @@ namespace pandemic {
             void remove_cures();
     };
 }
+
+            // const int& operator[] (City city) const;

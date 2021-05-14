@@ -132,3 +132,6 @@ namespace pandemic {
     }
 }
 
+    // const int& Board::operator[] (City city) const {
+    //     return _disease_map.at(city).second;
+    // }
