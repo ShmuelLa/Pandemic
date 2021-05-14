@@ -10,8 +10,8 @@ namespace pandemic {
     }
     
     Player& Player::take_card(City city) {
-        if (_player_city_cards[city] == 0) {
-            _player_city_cards[city]++;
+        if (_player_city_cards[city] < 1) {
+            _player_city_cards[city] = 1;
         }
         return *this;
     }
@@ -29,6 +29,9 @@ namespace pandemic {
     }
 
     Player& Player::drive(City city) {
+        if (_current_city == city) {
+            throw("Player - Can't drive to current city");
+        }
         if (_player_board._connection_map[_current_city].count(city) < 1) {
             throw("Cities are not connected!");
         }
@@ -43,9 +46,11 @@ namespace pandemic {
         if (_player_city_cards[city] > 0) {
             _player_city_cards[city]--;
             _current_city = city;
-            return *this;
         }
-        throw("Player - Can't Fly direct, no availabe cards");
+        else {
+            throw("Player - Can't Fly direct, no availabe cards");
+        }
+        return *this;
     }
 
     Player& Player::fly_charter(City city) {
@@ -61,7 +66,7 @@ namespace pandemic {
     }
 
     Player& Player::fly_shuttle(City city) {
-        if (_current_city ==city) {
+        if (_current_city == city) {
             throw("Player - Can't fly shuttle to same city");
         }
         if (_player_board._research_stations[_current_city] && _player_board._research_stations[city]) {
@@ -72,6 +77,9 @@ namespace pandemic {
     }
 
     Player& Player::treat(City city) {
+        if (city != _current_city) {
+            throw("Player - must treat current city");
+        }
         if (_player_board._disease_map[_current_city].second == 0) {
             throw("Player - No disease cubes in current city");
         }
@@ -102,12 +110,13 @@ namespace pandemic {
             throw("Player - Can't discover cure, insufficient color cards");
         }
         card_count = 0;
-        while (card_count < _cards_needed) {
-            for (auto &cards : _player_city_cards) {
-                if (_player_board._disease_map[cards.first].first == color) {
-                    card_count++;
-                    cards.second--;
-                }
+        for (auto &cards : _player_city_cards) {
+            if (_player_board._disease_map[cards.first].first == color) {
+                card_count++;
+                cards.second--;
+            }
+            if (card_count == _cards_needed) {
+                break;
             }
         }
         _player_board._cures_discovered[color] = true;

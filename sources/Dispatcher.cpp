@@ -6,6 +6,9 @@ namespace pandemic {
     }
 
     Player& Dispatcher::fly_direct(City city) {
+        if (_current_city == city) {
+            throw("Dispatcher - can't fly_direct to current city");
+        }
         if (_player_board._research_stations[_current_city]) {
             _current_city = city;
             return *this;

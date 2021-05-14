@@ -6,70 +6,56 @@ namespace pandemic {
     }
 
     Player& Medic::treat(City city) {
-        if (_player_board._disease_map[_current_city].second == 0) {
-            throw("No disease cubes in current city");
+        if (city != _current_city) {
+            throw("Medic - can't treat other city");
         }
-        Color _currect_city_color = _player_board._disease_map[_current_city].first;
+        if (_player_board._disease_map[city].second == 0) {
+            throw("Medic - No disease cubes in current city");
+        }
+        Color _currect_city_color = _player_board._disease_map[city].first;
         if (_player_board._cures_discovered[_currect_city_color]) {
-            _player_board[_current_city] = 0;
+            _player_board[city] = 0;
             return *this;
         }
-        _player_board[_current_city] = 0;
+        _player_board[city] = 0;
         return *this;
 
     }
 
     Player& Medic::drive(City city) {
-        if (_player_board._connection_map[_current_city].count(city) < 1) {
-            throw("Medic - Cities are not connected!");
-        }
-        _current_city = city;
+        Player::drive(city);
         Color _currect_city_color = _player_board._disease_map[_current_city].first;
-        if (_player_board._cures_discovered[_currect_city_color] && _player_board._disease_map[_current_city].second > 0) {
+        if (_player_board._cures_discovered[_currect_city_color]) {
             _player_board[_current_city] = 0;
         }
         return *this;
     }
 
     Player& Medic::fly_direct(City city) {
+        Player::fly_direct(city);
         Color _currect_city_color = _player_board._disease_map[_current_city].first;
-        if (_player_city_cards[city] > 0) {
-            _player_city_cards[city]--;
-            _current_city = city;
-            if (!_player_board._cures_discovered[_currect_city_color]) {
-                return *this;
-            }
-        }
-        if (_player_board._cures_discovered[_currect_city_color] && _player_board._disease_map[_current_city].second > 0) {
+        if (_player_board._cures_discovered[_currect_city_color]) {
             _player_board[_current_city] = 0;
-            return *this;
         }
-        throw("Medic - There is no connected city with availabe cards");      
+        return *this;
     }
 
     Player& Medic::fly_charter(City city) {
-        if (_player_board._connection_map[_current_city].count(city) >= 1 && _player_city_cards[_current_city] > 0) {
-            _player_city_cards[_current_city]--;
-            _current_city = city;
-            return *this;
-        }
+        Player::fly_charter(city);
         Color _currect_city_color = _player_board._disease_map[_current_city].first;
-        if (_player_board._cures_discovered[_currect_city_color] && _player_board._disease_map[_current_city].second > 0) {
+        if (_player_board._cures_discovered[_currect_city_color]) {
             _player_board[_current_city] = 0;
         }
-        throw("Medic - There is no connected city with availabe cards");  
+        return *this; 
     }
 
     Player& Medic::fly_shuttle(City city) {
-        if (_player_board._research_stations[_current_city] && _player_board._research_stations[city]) {
-            _current_city = city;
-            return *this;
-        }
+        Player::fly_shuttle(city);
         Color _currect_city_color = _player_board._disease_map[_current_city].first;
-        if (_player_board._cures_discovered[_currect_city_color] && _player_board._disease_map[_current_city].second > 0) {
+        if (_player_board._cures_discovered[_currect_city_color]) {
             _player_board[_current_city] = 0;
         }
-        throw("Medic - Current or targeted city has no research stations");
+        return *this; 
     }
 
     string Medic::role() {

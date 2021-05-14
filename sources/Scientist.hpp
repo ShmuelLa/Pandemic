@@ -8,6 +8,7 @@ namespace pandemic {
         
         private:
             int _cards_needed_for_cure;
+            
         public:
             Scientist(Board& board, City city, int num);
             virtual Player& discover_cure(Color color) override;

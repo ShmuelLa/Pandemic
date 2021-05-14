@@ -22,6 +22,7 @@ namespace pandemic {
             bool is_clean();
             friend ostream& operator<< (ostream& stream, const Board& board);
             void remove_cures();
+            void remove_stations();
     };
 }
 

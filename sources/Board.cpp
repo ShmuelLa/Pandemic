@@ -1,3 +1,4 @@
+
 #include "Board.hpp"
 
 namespace pandemic {
@@ -129,6 +130,12 @@ namespace pandemic {
         for (auto &cure : _cures_discovered) {
             cure.second = false;
         }
+    }
+
+    void Board::remove_stations() {
+        for (auto &station : _research_stations) {
+            station.second = false;
+        } 
     }
 }
 

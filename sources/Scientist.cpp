@@ -22,12 +22,13 @@ namespace pandemic {
             throw("Scientist - Can't discover cure, insufficient color cards");
         }
         card_count = 0;
-        while (card_count < _cards_needed_for_cure) {
-            for (auto &cards : _player_city_cards) {
-                if (_player_board._disease_map[cards.first].first == color) {
-                    card_count++;
-                    cards.second--;
-                }
+        for (auto &cards : _player_city_cards) {
+            if (_player_board._disease_map[cards.first].first == color) {
+                card_count++;
+                cards.second--;
+            }
+            if (card_count == _cards_needed_for_cure) {
+                break;
             }
         }
         _player_board._cures_discovered[color] = true;
