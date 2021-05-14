@@ -113,7 +113,9 @@ namespace pandemic {
     }
 
     ostream& operator<< (ostream& stream, const Board& Board) {
-        stream << "output test";
+        for (const auto& city : Board._disease_map) {
+            stream << city.first << " Cubes: " << city.second.second << endl;
+        }
         return stream;
     }
 
@@ -138,7 +140,3 @@ namespace pandemic {
         } 
     }
 }
-
-    // const int& Board::operator[] (City city) const {
-    //     return _disease_map.at(city).second;
-    // }

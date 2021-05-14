@@ -25,5 +25,3 @@ namespace pandemic {
             void remove_stations();
     };
 }
-
-            // const int& operator[] (City city) const;
