@@ -31,6 +31,7 @@ namespace pandemic {
                 }
             }
         }
+        _player_board._cures_discovered[color] = true;
         return *this;
     }
 

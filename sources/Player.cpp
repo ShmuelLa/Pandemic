@@ -37,12 +37,15 @@ namespace pandemic {
     }
 
     Player& Player::fly_direct(City city) {
+        if (_current_city == city) {
+            throw("Player - Can't Fly direct to current city");
+        }
         if (_player_city_cards[city] > 0) {
             _player_city_cards[city]--;
             _current_city = city;
             return *this;
         }
-        throw("Player - Can't Fly direct, no availabe cards");      
+        throw("Player - Can't Fly direct, no availabe cards");
     }
 
     Player& Player::fly_charter(City city) {
@@ -104,6 +107,7 @@ namespace pandemic {
                 }
             }
         }
+        _player_board._cures_discovered[color] = true;
         return *this;
     }
 
