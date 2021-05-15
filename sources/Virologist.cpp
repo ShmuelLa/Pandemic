@@ -34,7 +34,6 @@ namespace pandemic {
         _player_board[city]--;
         _player_city_cards[city]--;
         return *this;
-
     }
 
     string Virologist::role() {
